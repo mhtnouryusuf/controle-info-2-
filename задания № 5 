@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+
+    cout << "Entrez deux nombres : ";
+    cin >> a >> b;
+
+   
+    int x = a;
+    int y = b;
+    
+
+    while (y != 0) {
+        int reste = x % y;
+        x = y;
+        y = reste;
+    }
+
+    cout << "Le plus grand diviseur commun (PGCD) de " << a << " et " << b << " est : " << x << endl;
+    
+    
+    return 0;
+}
