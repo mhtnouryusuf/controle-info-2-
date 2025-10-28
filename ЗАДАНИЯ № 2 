@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  
+    int taille = 12;
+    int tabal [] = {1, 1, 2, 2, 2, 3, 5, 5, 5, 5, 2, 2};
+
+    cout << "Tabal : ";
+    for (int i = 0; i < taille; i++) {
+        cout << tabal[i] << " ";
+    }
+    cout << endl;
+
+
+    int sequences = 0;
+
+    for (int i = 0; i < taille; i++) {
+       
+        if (i == 0 || tabal[i] != tabal[i - 1]) {
+            sequences++;
+        }
+    }
+
+ 
+    cout << "Nombre de séquences d’éléments identiques : " << sequences << endl;
+
+    return 0;
+}
