@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   
+    int taille = 10; 
+    int tableau[] = {3, 6, 8, 12, 15, 18, 20, 25, 30, 35};  
+    int nombre = 5;  
+
+    cout << "Tableau : ";
+    for (int i = 0; i < taille; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+    cout << "Nombre choisi : " << nombre << endl;
+
+    
+    int compteur = 0;
+    for (int i = 0; i < taille; i++) {
+        if (tableau[i] % nombre == 0) {
+            compteur++;
+        }
+    }
+
+   
+    cout << "Il y a " << compteur << " éléments multiples de " << nombre << " dans le tableau." << endl;
+
+    return 0;
+}
