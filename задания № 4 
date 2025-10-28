@@ -1,0 +1,70 @@
+
+#include <iostream>
+#include <random>
+#include <iomanip>
+#include <cmath> 
+
+int main() {
+
+    const int N = 6;    
+    const int M = 5;             
+    const int RNG_MIN = -20;       
+    const int RNG_MAX = 100;    
+    const unsigned SEED = 12345;
+    std::mt19937 rng(SEED);
+    std::uniform_int_distribution<int> dist(RNG_MIN, RNG_MAX)
+    int** mat = new int*[N];
+    for (int i = 0; i < N; ++i) {
+        mat[i] = new int[M];
+        
+    long long sum = 0;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            mat[i][j] = dist(rng);
+            sum += mat[i][j];
+        
+    std::cout << "Matrice " << N << " x " << M << " (valeurs aleatoires entre "
+              << RNG_MIN << " et " << RNG_MAX << "):\n\n";
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            std::cout << std::setw(6) << mat[i][j];
+        }
+        std::cout << '\n';
+    }
+    std::cout << '\n';
+
+
+    double totalElements = static_cast<double>(N) * static_cast<double>(M);
+    double average = static_cast<double>(sum) / totalElements;
+
+  
+    int countAbove = 0;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            if (static_cast<double>(mat[i][j]) > average) ++countAbove;
+        }
+    }
+
+ 
+    std::cout << "Somme des elements: " << sum << '\n';
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "Moyenne: " << average << '\n';
+    std::cout << "Nombre d'elements strictement superieurs a la moyenne: " << countAbove << '\n';
+
+    std::cout << "\nElements > moyenne (valeur [ligne,col]):\n";
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            if (static_cast<double>(mat[i][j]) > average) {
+                std::cout << mat[i][j] << " [" << i << "," << j << "]  ";
+            }
+        }
+    }
+    std::cout << "\n";
+
+    for (int i = 0; i < N; ++i) {
+        delete[] mat[i];
+    }
+    delete[] mat;
+
+    return 0;
+}
