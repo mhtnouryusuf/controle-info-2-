@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int* resizeArray(int* arr, int oldSize, int newSize) {
+   
+    int* newArr = (int*)realloc(arr, newSize * sizeof(int));
+    
+   
+    if (newArr == NULL) {
+        printf("Erreur : impossible de réallouer la mémoire.\n");
+        free(arr);
+        exit(EXIT_FAILURE);
+    }
+
+    
+    if (newSize > oldSize) {
+        for (int i = oldSize; i < newSize; i++) {
+            newArr[i] = 0;
+        }
+    }
+
+    return newArr;
+}
+
+int main() {
+    int oldSize = 5;
+    int newSize = 8;
+
+    
+    int* tableau = (int*)malloc(oldSize * sizeof(int));
+    if (tableau == NULL) {
+        printf("Erreur d'allocation initiale.\n");
+        return 1;
+    }
+
+
+    for (int i = 0; i < oldSize; i++) {
+        tableau[i] = i + 1;
+    }
+
+    printf("Tableau original : ");
+    for (int i = 0; i < oldSize; i++) {
+        printf("%d ", tableau[i]);
+    }
+    printf("\n");
+    
+    tableau = resizeArray(tableau, oldSize, newSize);
+
+    printf("Tableau après redimensionnement : ");
+    for (int i = 0; i < newSize; i++) {
+        printf("%d ", tableau[i]);
+    }
+    printf("\n");
+
+    
+    free(tableau);
+
+    return 0;
+}
